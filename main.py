@@ -150,11 +150,53 @@ class Introduction:
         self.continue_button.grid(row=3, padx=20, pady=20)
 
 
+        #create a Button - privacy button
+        self.privacy_button = Button(self.quiz_frame,
+                                      text="Privacy Policy",
+                                      font=("Arial", "13"),
+                                      bg="Cyan",
+                                      command = self.pp)
+        self.privacy_button.grid(row=4, padx=20, pady=20)
+
+
+    def pp(self):
+        self.quiz_frame.destroy()
+        Privacy_Policy(root)
+
+
     def name_collection(self):
         name = self.entry_box.get()  #this will collect the name from the entry box
         names_list.append(name)  #adds the user name to names list declared at the beginning
         self.quiz_frame.destroy()  #this will destroy the starter window
         Quiz(root)
+
+
+class Privacy_Policy:
+    def __init__(self, parent):
+
+        background_color = "plum1"
+
+        self.pp_frame = Frame(parent, bg = background_color, padx = 100, pady = 100)
+        self.pp_frame.grid()
+
+        self.pp_heading = Label(self.pp_frame, text = "   This is the privacy policy   ", font = ("Tw Cen MT", 22), bg = background_color, pady = 15)
+        self.pp_heading.grid(row = 0)
+
+        self.ppcont_button = Button(self.pp_frame, text = "  Continue to quiz  ", width = 15, bg = "Cyan", font=("Tw Cen MT", 12), command=self.privacy_policy_continue)
+        self.ppcont_button.grid(row=4, pady=20)
+
+        self.exit_button = Button(self.pp_frame, text = "Exit", width = 10, bg = "Red", font=("Tw Cen MT", 12), command = self.close_end)
+        self.exit_button.grid(row=6, pady=20)
+
+    def privacy_policy_continue(self):
+        self.pp_frame.destroy()  #this will destroy the starter window
+        Quiz(root)
+
+    def close_end(self):
+        self.pp_frame.destroy()
+        root.destroy()
+
+
 
 class Quiz:
     def __init__(self, parent):
@@ -342,7 +384,7 @@ class End:
             self.end_frame = Frame(self.end_box, width = 1000, height = 1000, bg = background)
             self.end_frame.grid()
 
-            end_heading = Label(self.end_frame, text = "   Well Done! Thanks for playing   ", font = ("Tw Cen MT", 22), bg = background, pady = 15)
+            end_heading = Label(self.end_frame, text = "   Thanks for playing!   ", font = ("Tw Cen MT", 22), bg = background, pady = 15)
             end_heading.grid(row = 0)
 
             exit_button = Button(self.end_frame, text = "Exit", width = 10, bg = "Red", font=("Tw Cen MT", 12), command = self.close_end)
