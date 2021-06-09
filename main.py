@@ -7,101 +7,101 @@ global questions_answers
 
 asked = []
 
-
+score = 0
 
 
 questions_answers = {
     1: [
-        "Sample question one?", #First item, this is going to be the question, index 0
-        "Option 1", #Choice 1, index 1
-        "Option 2", #Choice 2, index 2
-        "Option 3", #Choice 3, index 3
-        "Option 4", #Choice 4, index 4
-        "Option 3", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
+        "1+2?", #First item, this is going to be the question, index 0
+        "2", #Choice 1, index 1
+        "4", #Choice 2, index 2
+        "3", #Choice 3, index 3
+        "43", #Choice 4, index 4
+        "3", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
         3], #Last item, "3" <- index position of correct answer
 
 
     2: [
-        "Sample question two?", #First item, this is going to be the question, index 0
-        "Option 1", #Choice 1, index 1
-        "Option 2", #Choice 2, index 2
-        "Option 3", #Choice 3, index 3
-        "Option 4", #Choice 4, index 4
-        "Option 3", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
+        "7x9?", #First item, this is going to be the question, index 0
+        "49", #Choice 1, index 1
+        "63", #Choice 2, index 2
+        "23", #Choice 3, index 3
+        "21", #Choice 4, index 4
+        "63", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
         2], #Last item, "3" <- index position of correct answer
 
 
     3: [
-        "Sample question three?", #First item, this is going to be the question, index 0
-        "Option 1", #Choice 1, index 1
-        "Option 2", #Choice 2, index 2
-        "Option 3", #Choice 3, index 3
-        "Option 4", #Choice 4, index 4
-        "Option 3", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
+        "2-9?", #First item, this is going to be the question, index 0
+        "-7", #Choice 1, index 1
+        "34", #Choice 2, index 2
+        "3", #Choice 3, index 3
+        "All of the above", #Choice 4, index 4
+        "-7", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
         1], #Last item, "3" <- index position of correct answer
 
     4: [
-        "Sample question four?", #First item, this is going to be the question, index 0
-        "Option 1", #Choice 1, index 1
-        "Option 2", #Choice 2, index 2
-        "Option 3", #Choice 3, index 3
-        "Option 4", #Choice 4, index 4
-        "Option 3", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
+        "7/2?", #First item, this is going to be the question, index 0
+        "3", #Choice 1, index 1
+        "4", #Choice 2, index 2
+        "3.5", #Choice 3, index 3
+        "2", #Choice 4, index 4
+        "3.5", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
         3], #Last item, "3" <- index position of correct answer
 
     
     5: [
-        "Sample question five?", #First item, this is going to be the question, index 0
-        "Option 1", #Choice 1, index 1
-        "Option 2", #Choice 2, index 2
-        "Option 3", #Choice 3, index 3
-        "Option 4", #Choice 4, index 4
-        "Option 3", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
+        "5+3x3? Follow BEDMAS", #First item, this is going to be the question, index 0
+        "34", #Choice 1, index 1
+        "333423423", #Choice 2, index 2
+        "14", #Choice 3, index 3
+        "None of the above", #Choice 4, index 4
+        "14", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
         3], #Last item, "3" <- index position of correct answer
 
     6: [
-        "Sample question six?", #First item, this is going to be the question, index 0
-        "Option 1", #Choice 1, index 1
-        "Option 2", #Choice 2, index 2
-        "Option 3", #Choice 3, index 3
-        "Option 4", #Choice 4, index 4
-        "Option 3", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
+        "Is math fun?", #First item, this is going to be the question, index 0
+        "Yes!", #Choice 1, index 1
+        "No! What is math?", #Choice 2, index 2
+        "Maybe", #Choice 3, index 3
+        "Who cares?", #Choice 4, index 4
+        "Yes!", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
         1], #Last item, "3" <- index position of correct answer
 
     7: [
-        "Sample question seven?", #First item, this is going to be the question, index 0
-        "Option 1", #Choice 1, index 1
-        "Option 2", #Choice 2, index 2
-        "Option 3", #Choice 3, index 3
-        "Option 4", #Choice 4, index 4
-        "Option 3", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
+        "9^2?", #First item, this is going to be the question, index 0
+        "23", #Choice 1, index 1
+        "24", #Choice 2, index 2
+        "69", #Choice 3, index 3
+        "81", #Choice 4, index 4
+        "81", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
         4], #Last item, "3" <- index position of correct answer
 
     8: [
-        "Sample question eight?", #First item, this is going to be the question, index 0
-        "Option 1", #Choice 1, index 1
-        "Option 2", #Choice 2, index 2
-        "Option 3", #Choice 3, index 3
-        "Option 4", #Choice 4, index 4
-        "Option 3", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
+        "What is discriminant?", #First item, this is going to be the question, index 0
+        "b^2-2ab", #Choice 1, index 1
+        "b^2-4ac", #Choice 2, index 2
+        "c^2+2ab", #Choice 3, index 3
+        "c^2-2ab", #Choice 4, index 4
+        "b^2-4ac", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
         2], #Last item, "3" <- index position of correct answer
 
     9: [
-        "Sample question nine?", #First item, this is going to be the question, index 0
-        "Option 1", #Choice 1, index 1
-        "Option 2", #Choice 2, index 2
-        "Option 3", #Choice 3, index 3
-        "Option 4", #Choice 4, index 4
-        "Option 3", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
+        "What is the capital of Bangladesh?", #First item, this is going to be the question, index 0
+        "New Delhi", #Choice 1, index 1
+        "Suva", #Choice 2, index 2
+        "Ankara", #Choice 3, index 3
+        "Dhaka", #Choice 4, index 4
+        "Dhaka", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
         4], #Last item, "3" <- index position of correct answer
 
     10: [
-        "Sample question ten?", #First item, this is going to be the question, index 0
-        "Option 1", #Choice 1, index 1
-        "Option 2", #Choice 2, index 2
-        "Option 3", #Choice 3, index 3
-        "Option 4", #Choice 4, index 4
-        "Option 3", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
+        "How many seconds are in a day?", #First item, this is going to be the question, index 0
+        "99345", #Choice 1, index 1
+        "72000", #Choice 2, index 2
+        "86400", #Choice 3, index 3
+        "None of the above", #Choice 4, index 4
+        "86400", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
         3] #Last item, "3" <- index position of correct answer
 }
 
@@ -126,12 +126,14 @@ class Introduction:
         #Label widget for our heading
         self.heading_label = Label(self.quiz_frame,
                                    text = "This test will test your math skills.",
+                                   font=("Helvetica", "13"),
                                    bg=background_color)
         self.heading_label.grid(row=0, padx=20)
 
         #creates a label to ask for the name
         self.user_label = Label(self.quiz_frame,
                                 text="Enter your name to begin this journey...",
+                                font=("Helvetica", "13"),
                                 bg=background_color)
         self.user_label.grid(row=1, padx=20, pady=20)
 
@@ -168,8 +170,9 @@ class Quiz:
         #Label widget for our question
         self.question_label = Label(self.quiz_frame,
                                    text = questions_answers[qnum][0],
+                                   font=("Helvetica", "16"),
                                    bg=background_color)
-        self.question_label.grid(row=0, padx=20)
+        self.question_label.grid(row=0, padx=150)
 
         #This holds value of radio buttons
         self.var1 = IntVar()
@@ -184,7 +187,7 @@ class Quiz:
                                pady=15,
                                variable=self.var1,
                                indicator=0,
-                               background="red")
+                               background="burlywood1")
         self.rb1.grid(row=2) #placement
 
 
@@ -198,7 +201,7 @@ class Quiz:
                                pady=15,
                                variable=self.var1,
                                indicator=0,
-                               background="red")
+                               background="burlywood1")
         self.rb2.grid(row=3) #placement
 
 
@@ -212,7 +215,7 @@ class Quiz:
                                pady=15,
                                variable=self.var1,
                                indicator=0,
-                               background="red")
+                               background="burlywood1")
         self.rb3.grid(row=4) #placement
 
 
@@ -226,9 +229,70 @@ class Quiz:
                                pady=15,
                                variable=self.var1,
                                indicator=0,
-                               background="red")
+                               background="burlywood1")
         self.rb4.grid(row=5) #placement
         
+        #confirm button to move on to the next question
+        self.confirm_button = Button(self.quiz_frame,
+                                    text = "Confirm",
+                                    bg="SpringGreen2",
+                                    command=self.test_progress,
+                                    padx=10)
+        self.confirm_button.grid(row=6) #placement of continue button
+
+        # Creating a score label for the user to know how well they have done so far.
+        self.score_label = Label(self.quiz_frame,
+                                    text="SCORE",
+                                    font=("Arial", "15"),
+                                    bg=background_color)
+        self.score_label.grid(row=7, padx=10, pady=1)
+
+    #Method for the appearance of the next question
+    def questions_setup(self):
+        randomiser()
+        self.var1.set(0)
+        self.question_label.config(text = questions_answers[qnum][0])
+        self.rb1.config(text = questions_answers[qnum][1])
+        self.rb2.config(text = questions_answers[qnum][2])
+        self.rb3.config(text = questions_answers[qnum][3])
+        self.rb4.config(text = questions_answers[qnum][4])
+
+    #This is the method which will be called when the confirm button is clicked <- taking care of progress
+    def test_progress(self):
+        global score
+        scr_label = self.score_label
+        choice = self.var1.get()
+        # Checking how many items are in the asked list
+        if len(asked) > 9: #If this is the last question
+            if choice == questions_answers[qnum][6]: #If they select the correct choice for last question
+                score += 1 # Adding one point to the score
+                scr_label.configure(text = score)
+                self.confirm_button.config(text = "Confirm")
+                
+            else: #If they select the incorrect choice for last question
+                score +=0
+                scr_label.configure(text = "The answer to the previous question was " + questions_answers[qnum][5])
+                self.confirm_button.config(text = "Confirm")    
+
+        else: #If it is not the last question
+            if choice == 0: #boundary testing <- ensuring the user actually selects a choice
+                self.confirm_button.config(text = "Please select a choice!")
+                choice = self.var1.get()
+
+            else: #If it isn't the last question and they HAVE selected a choice.
+                if choice == questions_answers[qnum][6]: #If they selected the correct choice
+                    score += 1
+                    scr_label.configure(text = score)
+                    self.confirm_button.config(text = "Confirm")
+                    self.questions_setup() #Will move to the next question
+                
+                else: #If the choice is incorrect 
+                    score += 0
+                    scr_label.configure(text = "The answer to the previous question was " + questions_answers[qnum][5])
+                    self.confirm_button.config(text = "Confirm")
+                    self.questions_setup() #Will move to the next question  
+
+
 
 ####### program start ##########
 
