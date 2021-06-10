@@ -1,5 +1,6 @@
 from tkinter import *
 import random
+import webbrowser
 
 names_list = []
 
@@ -8,6 +9,9 @@ global questions_answers
 asked = []
 
 score = 0
+
+
+
 
 
 questions_answers = {
@@ -179,22 +183,23 @@ class Privacy_Policy:
         self.pp_frame = Frame(parent, bg = background_color, padx = 100, pady = 100)
         self.pp_frame.grid()
 
-        self.pp_heading = Label(self.pp_frame, text = "   This is the privacy policy   ", font = ("Tw Cen MT", 22), bg = background_color, pady = 15)
+        self.pp_heading = Label(self.pp_frame, text = "   This is the privacy policy   ", font = ("Comic Sans MS", 22), bg = background_color, pady = 15)
         self.pp_heading.grid(row = 0)
 
-        self.ppcont_button = Button(self.pp_frame, text = "  Continue to quiz  ", width = 15, bg = "Cyan", font=("Tw Cen MT", 12), command=self.privacy_policy_continue)
-        self.ppcont_button.grid(row=4, pady=20)
+        self.ppback_button = Button(self.pp_frame, text = " Back ", width = 15, bg = "Cyan", font=("Comic Sans MS", 12), command=self.privacy_policy_back)
+        self.ppback_button.grid(row=4, pady=20)
 
-        self.exit_button = Button(self.pp_frame, text = "Exit", width = 10, bg = "Red", font=("Tw Cen MT", 12), command = self.close_end)
+        self.exit_button = Button(self.pp_frame, text = "Exit", width = 10, bg = "Red", font=("Comic Sans MS", 12), command = self.close_end)
         self.exit_button.grid(row=6, pady=20)
 
-    def privacy_policy_continue(self):
+    def privacy_policy_back(self):
         self.pp_frame.destroy()  #this will destroy the starter window
-        Quiz(root)
+        Introduction(root)
 
     def close_end(self):
         self.pp_frame.destroy()
         root.destroy()
+
 
 
 
@@ -290,12 +295,8 @@ class Quiz:
                                     bg=background_color)
         self.score_label.grid(row=7, padx=10, pady=1)
 
-        self.quit = Button(self.quiz_frame, 
-                                    text = "Quit",
-                                    font = ("Comic Sans MS", 13), 
-                                    bg = "red2", 
-                                    command = self.end_screen)
-        self.quit.grid(row = 7, column = 3, sticky = E, padx = 5, pady = 5)
+        self.exit_button = Button(self.quiz_frame, text = "Exit", width = 10, bg = "Red", font=("Comic Sans MS", 12), command = self.close_end)
+        self.exit_button.grid(row=9, pady=20)
 
 
 
@@ -318,22 +319,41 @@ class Quiz:
         if len(asked) > 9: #If this is the last question
             if choice == questions_answers[qnum][6]: #If they select the correct choice for last question
                 score += 1 # Adding one point to the score
+                
+                self.finish_quiz_help = Button(self.quiz_frame, 
+                                    text = "Continue",
+                                    font = ("Comic Sans MS", 13), 
+                                    bg = "SpringGreen2", 
+                                    command = self.end_screen)
+                self.finish_quiz_help.grid(row = 8, padx = 5, pady = 5)
+                
                 self.confirm_button.destroy()
                 self.question_label.destroy()
                 self.rb1.destroy()
                 self.rb2.destroy()
                 self.rb3.destroy()
                 self.rb4.destroy()
+                self.exit_button.destroy()
+
+                
                 
                 if score == 1: #singular grammar, 1 question, no "s" after question
-                    scr_label.configure(text = "Well done! You finished my quiz! You correctly answered " + str(score) + " question.")
+                    scr_label.configure(text = "You finished my quiz! You correctly answered " + str(score) + " question.")
                     
                 else: #plural, correctly answered more than 1 question. So "s" after question
-                    scr_label.configure(text = "Well done! You finished my quiz! You correctly answered " + str(score) + " questions.")
+                    scr_label.configure(text = "You finished my quiz! You correctly answered " + str(score) + " questions.")
                 
                 
             else: #If they select the incorrect choice for last question
                 score +=0
+                
+                self.finish_quiz_help = Button(self.quiz_frame, 
+                                    text = "Continue",
+                                    font = ("Comic Sans MS", 13), 
+                                    bg = "SpringGreen2", 
+                                    command = self.end_screen)
+                self.finish_quiz_help.grid(row = 8, padx = 5, pady = 5)
+                
                 scr_label.configure(text = "The answer to the previous question was '" + questions_answers[qnum][5] + "' .That was the last question so you have now finished my quiz!")
                 self.confirm_button.destroy()
                 self.question_label.destroy()
@@ -341,6 +361,7 @@ class Quiz:
                 self.rb2.destroy()
                 self.rb3.destroy()
                 self.rb4.destroy()
+                self.exit_button.destroy()
 
 
         else: #If it is not the last question
@@ -369,33 +390,147 @@ class Quiz:
 
 
     def end_screen(self):
-        root.withdraw()
-        open_end_screen = End()
-    
+        self.quiz_frame.destroy()
+        End(root)
 
-
-
-class End:
-    def __init__(self):
-            background = "plum1"
-            self.end_box = Toplevel(root) #Top level widgets work as windows that are directly managed by the window manager
-            self.end_box.title("End Box")
-
-            self.end_frame = Frame(self.end_box, width = 1000, height = 1000, bg = background)
-            self.end_frame.grid()
-
-            end_heading = Label(self.end_frame, text = "   Thanks for playing!   ", font = ("Tw Cen MT", 22), bg = background, pady = 15)
-            end_heading.grid(row = 0)
-
-            exit_button = Button(self.end_frame, text = "Exit", width = 10, bg = "Red", font=("Tw Cen MT", 12), command = self.close_end)
-            exit_button.grid(row=4, pady=20)
 
     def close_end(self):
-        self.end_box.destroy()
+        self.quiz_frame.destroy()
+        root.destroy()
+    
+
+final_score = score
+
+class End:
+    def __init__(self, parent):
+            background_color = "plum1"
+
+            self.end_frame = Frame(parent, bg = background_color, padx = 100, pady = 100)
+            self.end_frame.grid()
+
+            self.end_heading = Label(self.end_frame, text = "   Thanks for playing!   ", font = ("Comic Sans MS", 22), bg = background_color, pady = 15)
+            self.end_heading.grid(row = 0)
+
+            if score < 5:
+                self.helper_button = Button(self.end_frame, text = "Resources", width = 13, bg = "Cyan", font = ("Comic Sans MS", 13), command = self.help_continue_less_than_5)
+                self.helper_button.grid(row=4, pady=20)
+            
+
+            else:
+                self.helper_button_smart = Button(self.end_frame, text = "Resources", width = 13, bg = "Cyan", font = ("Comic Sans MS", 13), command = self.help_continue_more_than_5)
+                self.helper_button_smart.grid(row=5, pady=20)
+
+            self.exit_button = Button(self.end_frame, text = "Exit", width = 10, bg = "Red", font = ("Comic Sans MS", 13), command = self.close_end)
+            self.exit_button.grid(row=7, pady=20)
+
+            
+
+    def close_end(self):
+        self.end_frame.destroy()
         root.destroy()
 
-    
+    def help_continue_less_than_5(self):
+        self.end_frame.destroy()  #this will destroy the starter window
+        Helper(root)
+
+
+    def help_continue_more_than_5(self):
+        self.end_frame.destroy()  #this will destroy the starter window
+        Helper_Smart(root)
+
+
+
+class Helper:
+    def __init__(self, parent):
+
+        background_color = "plum1"
+
+        self.help_frame = Frame(parent, bg = background_color, padx = 100, pady = 100)
+        self.help_frame.grid()
+
+        self.help_heading = Label(self.help_frame, text = "   This will be where you can help youself   ", font = ("Comic Sans MS", 22), bg = background_color, pady = 15)
+        self.help_heading.grid(row = 0)
+
+        self.help_heading_2 = Label(self.help_frame, text = "You're final percentage was " + str((score/10)*100) + "%. With this in mind, you might want to look at these websites.", font = ("Comic Sans MS", 16), bg = background_color, pady = 15)
+        self.help_heading_2.grid(row = 1)
+
+        self.link_button_1 = Button(self.help_frame, text = "  IXL  ", width = 15, bg = "Cyan", font = ("Comic Sans MS", 13), command=self.ixl)
+        self.link_button_1.grid(row=4, pady=20)
+
+        self.link_button_2 = Button(self.help_frame, text = "  Khan Academy  ", width = 15, bg = "Cyan", font = ("Comic Sans MS", 13), command=self.khan)
+        self.link_button_2.grid(row=5, pady=20)
+
+        self.link_button_3 = Button(self.help_frame, text = "  The Verge  ", width = 15, bg = "Cyan", font = ("Comic Sans MS", 13), command=self.verge)
+        self.link_button_3.grid(row=6, pady=20)
+
+        self.exit_button = Button(self.help_frame, text = "Exit", width = 10, bg = "Red", font = ("Comic Sans MS", 13), command = self.close_end)
+        self.exit_button.grid(row=7, pady=20)
+
+    def ixl(self):
         
+        webbrowser.open("https://nz.ixl.com/")
+        root.destroy()
+
+    def khan(self):
+        
+        webbrowser.open("https://www.khanacademy.org/")
+        root.destroy()
+
+    def verge(self):
+        
+        webbrowser.open("https://www.theverge.com/")
+        root.destroy()
+
+    def close_end(self):
+        self.help_frame.destroy()
+        root.destroy()
+
+
+
+class Helper_Smart:
+    def __init__(self, parent):
+
+        background_color = "plum1"
+
+        self.help_frame = Frame(parent, bg = background_color, padx = 100, pady = 100)
+        self.help_frame.grid()
+
+        self.help_heading = Label(self.help_frame, text = "   This will be where you can help youself   ", font = ("Comic Sans MS", 22), bg = background_color, pady = 15)
+        self.help_heading.grid(row = 0)
+
+        self.help_heading_2 = Label(self.help_frame, text = "You're final percentage was " + str((score/10)*100) + "%. With this in mind, you might want to look at these websites.", font = ("Comic Sans MS", 16), bg = background_color, pady = 15)
+        self.help_heading_2.grid(row = 1)
+
+        self.link_button_1 = Button(self.help_frame, text = "  You're SMORT  ", width = 15, bg = "Cyan", font = ("Comic Sans MS", 13), command=self.ixl)
+        self.link_button_1.grid(row=4, pady=20)
+
+        self.link_button_2 = Button(self.help_frame, text = "  Khan Academy  ", width = 15, bg = "Cyan", font = ("Comic Sans MS", 13), command=self.khan)
+        self.link_button_2.grid(row=5, pady=20)
+
+        self.link_button_3 = Button(self.help_frame, text = "  The Verge  ", width = 15, bg = "Cyan", font = ("Comic Sans MS", 13), command=self.verge)
+        self.link_button_3.grid(row=6, pady=20)
+
+        self.exit_button = Button(self.help_frame, text = "Exit", width = 10, bg = "Red", font = ("Comic Sans MS", 13), command = self.close_end)
+        self.exit_button.grid(row=7, pady=20)
+
+    def ixl(self):
+        
+        webbrowser.open("https://nz.ixl.com/")
+        root.destroy()
+
+    def khan(self):
+        
+        webbrowser.open("https://www.khanacademy.org/")
+        root.destroy()
+
+    def verge(self):
+        
+        webbrowser.open("https://www.theverge.com/")
+        root.destroy()
+
+    def close_end(self):
+        self.help_frame.destroy()
+        root.destroy()     
     
 
 
