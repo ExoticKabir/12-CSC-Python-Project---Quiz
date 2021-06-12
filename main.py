@@ -604,3 +604,4 @@ if __name__ == "__main__":
     root.title("Math Helper by Tousif") #the title of my program
     Introduction_object = Introduction(root)
     root.mainloop() #This loops the window for to it stay and not disappear.
+    
