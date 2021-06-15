@@ -1,6 +1,5 @@
-#Version 7 -> Vastly improves the layout and what is displayed. Most of the actual coding is done by now, just making it more of a proper program now.
-#THIS VERSION DEALS WITH BOUNDARY TESTING
-#Followed conventions more strictly
+#Version 8 -> Applies design and feedback peers
+
 
 from tkinter import * #For GUI
 import random #To randomise the questions
@@ -30,12 +29,12 @@ questions_answers = {
 
 
     2: [
-        "What is locus?", #First item, this is going to be the question, index 0
-        "Distance from origin", #Choice 1, index 1
-        "A set of points that satisfies specfic conditions", #Choice 2, index 2
-        "A circle", #Choice 3, index 3
+        "Complex conjugate of 5+10i?", #First item, this is going to be the question, index 0
+        "10+20𝑖", #Choice 1, index 1
+        "5-10𝑖", #Choice 2, index 2
+        "15", #Choice 3, index 3
         "π/4", #Choice 4, index 4
-        "A set of points that satisfies specfic conditions", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
+        "5-10𝑖", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
         2], #Last item, "3" <- index position of correct answer
 
 
@@ -51,9 +50,9 @@ questions_answers = {
     4: [
         "2+√(15-2x3)?", #First item, this is going to be the question, index 0
         "-3", #Choice 1, index 1
-        "4", #Choice 2, index 2
+        "+4", #Choice 2, index 2
         "-1", #Choice 3, index 3
-        "2", #Choice 4, index 4
+        "+2", #Choice 4, index 4
         "-1", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
         3], #Last item, "3" <- index position of correct answer
 
@@ -72,17 +71,17 @@ questions_answers = {
         "Gives gradient", #Choice 1, index 1
         "Finds area of graph", #Choice 2, index 2
         "Makes it a quadratic", #Choice 3, index 3
-        "It helps with integration", #Choice 4, index 4
+        "Helps with integration", #Choice 4, index 4
         "Gives gradient", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
         1], #Last item, "3" <- index position of correct answer
 
     7: [
-        "What is pi?", #First item, this is going to be the question, index 0
-        "The arc of a circle in radians", #Choice 1, index 1
-        "3", #Choice 2, index 2
-        "Radius multiplied by area", #Choice 3, index 3
-        "The ratio of the circumference of any circle to the diameter", #Choice 4, index 4
-        "The ratio of the circumference of any circle to the diameter", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
+        "What does integration do?", #First item, this is going to be the question, index 0
+        "Converts to radians", #Choice 1, index 1
+        "Finds time", #Choice 2, index 2
+        "Helps with differentiation", #Choice 3, index 3
+        "Finds area of graph", #Choice 4, index 4
+        "Finds area of graph", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
         4], #Last item, "3" <- index position of correct answer
 
     8: [
@@ -125,7 +124,7 @@ def randomiser(): #My question randomiser
 
 class Introduction: #This is the introduction class
     def __init__(self, parent):
-        background_color = "plum1" #Setting the background colour
+        background_color = "#DA6FE4" #Setting the background colour
         #setting up first frame
         self.quiz_frame = Frame(parent, #The frame
                                 bg = background_color,
@@ -164,7 +163,7 @@ class Introduction: #This is the introduction class
         self.privacy_button = Button(self.quiz_frame,
                                       text = "Privacy Policy",
                                       font = ("Comic Sans MS", "13"),
-                                      bg = "Cyan",
+                                      bg = "#ffd64f",
                                       command = self.pp)
         self.privacy_button.grid(row = 4, padx = 20, pady = 20)
 
@@ -197,7 +196,7 @@ class Introduction: #This is the introduction class
 class PrivacyPolicy: #my privacy policy component
     def __init__(self, parent):
 
-        background_color = "plum1" #the background colour
+        background_color = "#DA6FE4" #the background colour
 
         self.pp_frame = Frame(parent, bg = background_color, padx = 100, pady = 100)
         self.pp_frame.grid() #creating the frame
@@ -216,7 +215,7 @@ class PrivacyPolicy: #my privacy policy component
         self.pp_info2.grid(row = 3)
 
         #This is a back button which will bring the user back to the introduction page
-        self.ppback_button = Button(self.pp_frame, text = " Back ", width = 10, bg = "Cyan", font = ("Comic Sans MS", 12), command = self.privacy_policy_back)
+        self.ppback_button = Button(self.pp_frame, text = " Back ", width = 10, bg = "#ffd64f", font = ("Comic Sans MS", 12), command = self.privacy_policy_back)
         self.ppback_button.grid(row = 4, pady = 15)
 
         #Exits the quiz
@@ -238,7 +237,7 @@ class PrivacyPolicy: #my privacy policy component
 #my quiz component
 class Quiz:
     def __init__(self, parent):
-        background_color = "plum1" #background colour
+        background_color = "#DA6FE4" #background colour
         #setting up first frame
         self.quiz_frame = Frame(parent, #the frame
                                 bg = background_color,
@@ -269,13 +268,13 @@ class Quiz:
         self.rb1 = Radiobutton(self.quiz_frame,
                                text = questions_answers[qnum][1],
                                font = ("Comic Sans MS", "12"),
-                               bg = background_color,
                                value = 1,
                                padx = 10,
                                pady = 15,
+                               width = 20,
                                variable = self.var1,
                                indicator = 0,
-                               background = "burlywood1")
+                               background = "#ffd64f")
         self.rb1.grid(row = 2) #placement
 
 
@@ -283,13 +282,13 @@ class Quiz:
         self.rb2 = Radiobutton(self.quiz_frame,
                                text = questions_answers[qnum][2],
                                font = ("Comic Sans MS", "12"),
-                               bg = background_color,
                                value = 2,
                                padx = 10,
                                pady = 15,
+                               width = 20,
                                variable = self.var1,
                                indicator = 0,
-                               background = "burlywood1")
+                               background = "#ffd64f")
         self.rb2.grid(row = 3) #placement
 
 
@@ -297,13 +296,13 @@ class Quiz:
         self.rb3 = Radiobutton(self.quiz_frame,
                                text = questions_answers[qnum][3],
                                font = ("Comic Sans MS", "12"),
-                               bg = background_color,
                                value = 3,
                                padx = 10,
                                pady = 15,
+                               width = 20,
                                variable = self.var1,
                                indicator = 0,
-                               background = "burlywood1")
+                               background = "#ffd64f")
         self.rb3.grid(row = 4) #placement
 
 
@@ -311,13 +310,13 @@ class Quiz:
         self.rb4 = Radiobutton(self.quiz_frame,
                                text = questions_answers[qnum][4],
                                font = ("Comic Sans MS", "12"),
-                               bg = background_color,
                                value = 4,
                                padx = 10,
                                pady = 15,
+                               width = 20,
                                variable = self.var1,
                                indicator = 0,
-                               background = "burlywood1")
+                               background = "#ffd64f")
         self.rb4.grid(row = 5) #placement
 
 
@@ -346,8 +345,17 @@ class Quiz:
                                     bg = background_color)
         self.score_label.grid(row = 8)
 
+        
+        # questions correct = qc
+        self.questions_correct_label = Label(self.quiz_frame,
+                                    text = " ", #making it invisible for the time being so that I can config it later on
+                                    font = ("Comic Sans MS", "15"),
+                                    bg = background_color)
+        self.questions_correct_label.grid(row = 9, pady = 10)        
+        
+        
         self.exit_button = Button(self.quiz_frame, text = "Exit", width = 10, bg = "Red", font = ("Comic Sans MS", 12), command = self.close_end)
-        self.exit_button.grid(row = 9, pady = 10)
+        self.exit_button.grid(row = 10, pady = 10)
         #the exit button to close the quiz
 
 
@@ -366,57 +374,63 @@ class Quiz:
     def test_progress(self):
         global score
         scr_label = self.score_label
+        qc_label = self.questions_correct_label
         choice = self.var1.get() #collects the choice of the user
         # Checking how many items are in the asked list
         if len(asked) > 9: #If this is the last question
-            if choice == questions_answers[qnum][6]: #If they select the correct choice for last question
-                score += 1 # Adding one point to the score
-                
-                self.finish_quiz_help = Button(self.quiz_frame, 
+            if choice == 0: #boundary testing <- ensuring the user actually selects a choice for the last question
+                self.confirm_button.config(text = "Please select a choice!")
+                choice = self.var1.get()
+
+            else: #If it is the last question and they HAVE selected a choice.
+                if choice == questions_answers[qnum][6]: #If they select the correct choice for last question
+                    score += 1 # Adding one point to the score
+
+                    self.finish_quiz_help = Button(self.quiz_frame, 
                                     text = "Continue",
                                     font = ("Comic Sans MS", 13), 
                                     bg = "SpringGreen2", 
                                     command = self.end_screen) #will move on to the end-screen
-                self.finish_quiz_help.grid(row = 9, padx = 5, pady = 5)
+                    self.finish_quiz_help.grid(row = 10, padx = 5, pady = 5)
                 
-                #destroying all the buttons and labels bcz the end is near
-                self.confirm_button.destroy()
-                self.question_label.destroy()
-                self.rb1.destroy()
-                self.rb2.destroy()
-                self.rb3.destroy()
-                self.rb4.destroy()
-                self.exit_button.destroy()
+                    #destroying all the buttons and labels bcz the end is near
+                    self.confirm_button.destroy()
+                    self.rb1.destroy()
+                    self.rb2.destroy()
+                    self.rb3.destroy()
+                    self.rb4.destroy()
+                    self.exit_button.destroy()
+
+                    self.question_label.configure(text = "You finished my quiz!")
+                    scr_label.configure(text = "Correct!")
+                    qc_label.configure(text = "Number of questions right: " + str(score))
+                
+                
+                
 
                 
+                else: #If they select the incorrect choice for last question
+                    score += 0
                 
-                if score == 1: #singular grammar, 1 question, no "s" after question
-                    scr_label.configure(text = "You finished my quiz! You correctly answered " + str(score) + " question.")
-                    
-                else: #plural, correctly answered more than 1 question. So "s" after question
-                    scr_label.configure(text = "You finished my quiz! You correctly answered " + str(score) + " questions.")
-                
-                
-            else: #If they select the incorrect choice for last question
-                score += 0
-                
-                self.finish_quiz_help = Button(self.quiz_frame, 
+                    self.finish_quiz_help = Button(self.quiz_frame, 
                                     text = "Continue",
                                     font = ("Comic Sans MS", 13), 
                                     bg = "SpringGreen2", 
                                     command = self.end_screen)
-                self.finish_quiz_help.grid(row = 9, padx = 5, pady = 5)
-                
-                scr_label.configure(text = "The answer to the previous question was '" + questions_answers[qnum][5] + "'. You have now finished my quiz!")
+                    self.finish_quiz_help.grid(row = 10, padx = 5, pady = 5)
 
-                #destroying all the buttons and labels bcz the end is near
-                self.confirm_button.destroy()
-                self.question_label.destroy()
-                self.rb1.destroy()
-                self.rb2.destroy()
-                self.rb3.destroy()
-                self.rb4.destroy()
-                self.exit_button.destroy()
+
+                    self.question_label.configure(text = "You finished my quiz!")
+                    scr_label.configure(text = "The answer was '" + questions_answers[qnum][5] + "'.")
+                    qc_label.configure(text = "Number of questions right: " + str(score))
+
+                    #destroying all the buttons and labels bcz the end is near
+                    self.confirm_button.destroy()
+                    self.rb1.destroy()
+                    self.rb2.destroy()
+                    self.rb3.destroy()
+                    self.rb4.destroy()
+                    self.exit_button.destroy()
 
 
         else: #If it is not the last question
@@ -428,18 +442,16 @@ class Quiz:
                 if choice == questions_answers[qnum][6]: #If they selected the correct choice
                     score += 1
 
-                    if score == 1: #singular grammar, 1 question, no "s" after question
-                        scr_label.configure(text = "Well done! You have now correctly answered " + str(score) + " question.")
-                    
-                    else: #plural, correctly answered more than 1 question. So "s" after question
-                        scr_label.configure(text = "Well done! You have now correctly answered " + str(score) + " questions.")
+                    scr_label.configure(text = "Correct!")
+                    qc_label.configure(text = "Number of questions right: " + str(score))
                     
                     self.confirm_button.config(text = "Confirm")
                     self.questions_setup() #Will move to the next question
                 
                 else: #If the choice is incorrect 
                     score += 0
-                    scr_label.configure(text = "The answer to the previous question was '" + questions_answers[qnum][5] + "'.")
+                    scr_label.configure(text = "The answer was '" + questions_answers[qnum][5] + "'.")
+                    qc_label.configure(text = "Number of questions right: " + str(score))
                     self.confirm_button.config(text = "Confirm")
                     self.questions_setup() #Will move to the next question
 
@@ -457,7 +469,7 @@ class Quiz:
 #creating the end class or the end window
 class End:
     def __init__(self, parent):
-            background_color = "plum1" #background colour
+            background_color = "#DA6FE4" #background colour
 
             self.end_frame = Frame(parent, bg = background_color, padx = 100, pady = 100) #the frame
             self.end_frame.grid()
@@ -466,7 +478,7 @@ class End:
             self.end_heading.grid(row = 0) #heading, thanks for playing
 
             if score < 5: #if they answer LESS than 5 questions correctly, this will move them to easier content
-                self.helper_button = Button(self.end_frame, text = "Resources", width = 13, bg = "Cyan", font = ("Comic Sans MS", 13), command = self.help_continue_less_than_5)
+                self.helper_button = Button(self.end_frame, text = "Resources", width = 13, bg = "#ffd64f", font = ("Comic Sans MS", 13), command = self.help_continue_less_than_5)
                 self.helper_button.grid(row = 4, pady = 20)
             
 
@@ -499,7 +511,7 @@ class End:
 class Helper:
     def __init__(self, parent):
 
-        background_color = "plum1" #background colour
+        background_color = "#DA6FE4" #background colour
 
         self.help_frame = Frame(parent, bg = background_color, padx = 100, pady = 50)
         self.help_frame.grid() #the frame
@@ -513,13 +525,13 @@ class Helper:
         self.help_heading_3 = Label(self.help_frame, text = "Come on! You can do better '" + str(names_list[0]) +  "'. I'm recommending slightly easier content.", font = ("Comic Sans MS", 16), bg = background_color, pady = 15)
         self.help_heading_3.grid(row = 2) #the str(names_list[0]) will give the first item in the names_list which will be the user's name
 
-        self.link_button_1 = Button(self.help_frame, text = "Resource 1", width = 15, bg = "Cyan", font = ("Comic Sans MS", 13), command = self.ixl) #links
+        self.link_button_1 = Button(self.help_frame, text = "Resource 1", width = 15, bg = "#ffd64f", font = ("Comic Sans MS", 13), command = self.ixl) #links
         self.link_button_1.grid(row = 4, pady = 20)
 
-        self.link_button_2 = Button(self.help_frame, text = "Resource 2", width = 15, bg = "Cyan", font = ("Comic Sans MS", 13), command = self.khan) #links
+        self.link_button_2 = Button(self.help_frame, text = "Resource 2", width = 15, bg = "#ffd64f", font = ("Comic Sans MS", 13), command = self.khan) #links
         self.link_button_2.grid(row = 5, pady = 20)
 
-        self.link_button_3 = Button(self.help_frame, text = "Resource 3", width = 15, bg = "Cyan", font = ("Comic Sans MS", 13), command = self.math) #links
+        self.link_button_3 = Button(self.help_frame, text = "Resource 3", width = 15, bg = "#ffd64f", font = ("Comic Sans MS", 13), command = self.math) #links
         self.link_button_3.grid(row = 6, pady = 20)
 
         self.exit_button = Button(self.help_frame, text = "Exit", width = 10, bg = "Red", font = ("Comic Sans MS", 13), command = self.close_end) #exit
@@ -549,7 +561,7 @@ class Helper:
 class HelperSmart:
     def __init__(self, parent):
 
-        background_color = "plum1" #background colour
+        background_color = "#DA6FE4" #background colour
 
         self.help_frame = Frame(parent, bg = background_color, padx = 100, pady = 50) #the frame
         self.help_frame.grid()
@@ -563,13 +575,13 @@ class HelperSmart:
         self.help_heading_3 = Label(self.help_frame, text = "You are well adept at math '" + str(names_list[0]) + "'. I'm recommending more advanced content.", font = ("Comic Sans MS", 16), bg = background_color, pady = 15)
         self.help_heading_3.grid(row = 2) #the str(names_list[0]) will give the first item in the names_list which will be the user's name
 
-        self.link_button_1 = Button(self.help_frame, text = "Resource 1", width = 15, bg = "Cyan", font = ("Comic Sans MS", 13), command=self.ixl) #links
+        self.link_button_1 = Button(self.help_frame, text = "Resource 1", width = 15, bg = "#ffd64f", font = ("Comic Sans MS", 13), command=self.ixl) #links
         self.link_button_1.grid(row = 4, pady = 20)
 
-        self.link_button_2 = Button(self.help_frame, text = "Resource 2", width = 15, bg = "Cyan", font = ("Comic Sans MS", 13), command=self.khan) #links
+        self.link_button_2 = Button(self.help_frame, text = "Resource 2", width = 15, bg = "#ffd64f", font = ("Comic Sans MS", 13), command=self.khan) #links
         self.link_button_2.grid(row = 5, pady = 20)
 
-        self.link_button_3 = Button(self.help_frame, text = "Resource 3", width = 15, bg = "Cyan", font = ("Comic Sans MS", 13), command=self.math) #links
+        self.link_button_3 = Button(self.help_frame, text = "Resource 3", width = 15, bg = "#ffd64f", font = ("Comic Sans MS", 13), command=self.math) #links
         self.link_button_3.grid(row = 6, pady = 20)
 
         self.exit_button = Button(self.help_frame, text = "Exit", width = 10, bg = "Red", font = ("Comic Sans MS", 13), command = self.close_end) #exit
@@ -592,7 +604,7 @@ class HelperSmart:
 
     def close_end(self):
         self.help_frame.destroy() #exit
-        root.destroy()     
+        root.destroy()
     
 #I've linked to actual math websites now.
 
@@ -604,4 +616,3 @@ if __name__ == "__main__":
     root.title("Math Helper by Tousif") #the title of my program
     Introduction_object = Introduction(root)
     root.mainloop() #This loops the window for to it stay and not disappear.
-    
