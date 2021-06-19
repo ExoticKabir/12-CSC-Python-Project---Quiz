@@ -1,9 +1,14 @@
-#Version 8 -> Applies design and feedback peers
+#Version 9 By Mohammad Tousif Kabir -> improves overall experience
 
+#Updates:
+#A) Uses pack instead of grid
+#B) Uses a message box instead of a label for the error message
+#C) Launches the program in maximised state
 
 from tkinter import * #For GUI
 import random #To randomise the questions
 import webbrowser #This is needed to launch the user to certain websites
+from tkinter import messagebox #This is to produce the error box
 
 names_list = [] #This will contain the user's name, which will be used later on
 
@@ -98,13 +103,13 @@ questions_answers = {
         "y = mx + c", #Choice 1, index 1
         "x^3 - y^3 = r", #Choice 2, index 2
         "y = x^2 - r", #Choice 3, index 3
-        "(x – h)^2 + (y – k)^2 = r^2", #Choice 4, index 4
-        "(x – h)^2 + (y – k)^2 = r^2", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
+        "(x–h)^2 + (y–k)^2 = r^2", #Choice 4, index 4
+        "(x–h)^2 + (y–k)^2 = r^2", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
         4], #Last item, "3" <- index position of correct answer
 
     10: [
         "How many seconds are in a day?", #First item, this is going to be the question, index 0
-        "99345", #Choice 1, index 1
+        "64200", #Choice 1, index 1
         "72000", #Choice 2, index 2
         "86400", #Choice 3, index 3
         "None of the above", #Choice 4, index 4
@@ -130,33 +135,35 @@ class Introduction: #This is the introduction class
                                 bg = background_color,
                                 padx = 100,
                                 pady = 100)
-        self.quiz_frame.grid()
+        self.quiz_frame.pack(fill = "both", expand = True)
         
         #Label widget for our heading
         self.heading_label = Label(self.quiz_frame, #The heading label
-                                   text = "How good are you at math?",
-                                   font = ("Comic Sans MS", "13"),
+                                   text = "Math Helper",
+                                   font = ("Comic Sans MS", "26"),
                                    bg = background_color)
-        self.heading_label.grid(row = 0, padx = 20)
+        self.heading_label.pack(pady = 20)
 
         #creates a label to ask for the name
         self.user_label = Label(self.quiz_frame,
-                                text = "Enter your name to begin this journey...",
+                                text = "Enter your name to below:",
                                 font = ("Comic Sans MS", "13"),
-                                bg  =background_color)
-        self.user_label.grid(row = 1, padx = 20, pady = 20)
+                                bg = background_color)
+        self.user_label.pack(pady = 20)
 
-        #create an entry box for the name
-        self.entry_box = Entry(self.quiz_frame)
-        self.entry_box.grid(row = 2, padx = 20, pady = 25)
+        #creates an entry box for the name
+        self.entry_box = Entry(self.quiz_frame, width = 35, font = ("Comic Sans MS", "14"))
+        self.entry_box.pack(pady = 20)
 
         #creates a button - continue button
         self.continue_button = Button(self.quiz_frame,
                                       text = "Continue",
                                       font = ("Comic Sans MS", "13"),
                                       bg = "SpringGreen2",
+                                      width = 20,
+                                      pady = 8,
                                       command = self.name_collection)
-        self.continue_button.grid(row = 3, padx = 20, pady = 20)
+        self.continue_button.pack(pady = 20)
 
 
         #creates a button - privacy button
@@ -164,16 +171,10 @@ class Introduction: #This is the introduction class
                                       text = "Privacy Policy",
                                       font = ("Comic Sans MS", "13"),
                                       bg = "#ffd64f",
+                                      width = 20,
+                                      pady = 8,
                                       command = self.pp)
-        self.privacy_button.grid(row = 4, padx = 20, pady = 20)
-
-        #this is the error label which will be used if the user doesn't enter a name or enters one which is too big, setting it as blank so it appears invisble.
-        #I will be able to config it later to change the text
-        self.error_label = Label(self.quiz_frame,
-                                text = "",
-                                font = ("Comic Sans MS", "13"),
-                                bg = background_color)
-        self.error_label.grid(row = 5)
+        self.privacy_button.pack()
 
     #Will run the privacy policy class and destroy the quiz frame or the introduction page
     def pp(self):
@@ -189,7 +190,7 @@ class Introduction: #This is the introduction class
             Quiz(root) #Will run the quiz class
 
         else: #if the name is less than 1 or greater than 13 characters, returns the error message below
-            self.error_label.config(text = "Please enter a name which has a min of 2 letters and max of 12 letters.")
+            messagebox.showerror(" Error", "Your name must be between 2-12 characters! ")
 
 
 
@@ -198,29 +199,31 @@ class PrivacyPolicy: #my privacy policy component
 
         background_color = "#DA6FE4" #the background colour
 
+        #creating the frame
         self.pp_frame = Frame(parent, bg = background_color, padx = 100, pady = 100)
-        self.pp_frame.grid() #creating the frame
+        self.pp_frame.pack(fill = "both", expand = True) 
 
-        self.pp_heading = Label(self.pp_frame, text = "   Privacy Policy   ", font = ("Comic Sans MS", 22), bg = background_color, pady = 15)
-        self.pp_heading.grid(row = 0) #setting the heading to privacy policy so the user knows it's the privacy policy page
+        #setting the heading to privacy policy so the user knows it's the privacy policy page
+        self.pp_heading = Label(self.pp_frame, text = "   Privacy Policy   ", font = ("Comic Sans MS", 24), bg = background_color, pady = 15)
+        self.pp_heading.pack() 
 
         #pp_info 1, 2 and 3 display what I want the privacy policy to state
-        self.pp_info1 = Label(self.pp_frame, text = "This privacy policy explains the privacy practices of this program. This program was created by Tousif Kabir.", font = ("Comic Sans MS", 12), bg = background_color, pady = 5)
-        self.pp_info1.grid(row = 1)
+        self.pp_info1 = Label(self.pp_frame, text = "This privacy policy explains the privacy practices of this program. This program was created by Tousif Kabir.", font = ("Comic Sans MS", 14), bg = background_color, pady = 5)
+        self.pp_info1.pack()
 
-        self.pp_info1 = Label(self.pp_frame, text = "I created this program for my level 2 computer science internal. I do not intend on making this program commercial.", font = ("Comic Sans MS", 12), bg = background_color, pady = 5)
-        self.pp_info1.grid(row = 2)
+        self.pp_info1 = Label(self.pp_frame, text = "I created this program for my level 2 computer science internal. I do not intend on making this program commercial.", font = ("Comic Sans MS", 14), bg = background_color, pady = 5)
+        self.pp_info1.pack()
 
-        self.pp_info2 = Label(self.pp_frame, text = "No data is stored or shared. The code for this project can also be found on GitHub.", font = ("Comic Sans MS", 12), bg = background_color, pady = 5)
-        self.pp_info2.grid(row = 3)
+        self.pp_info2 = Label(self.pp_frame, text = "No data is stored or shared. The code for this project can also be found on GitHub.", font = ("Comic Sans MS", 14), bg = background_color, pady = 5)
+        self.pp_info2.pack()
 
         #This is a back button which will bring the user back to the introduction page
-        self.ppback_button = Button(self.pp_frame, text = " Back ", width = 10, bg = "#ffd64f", font = ("Comic Sans MS", 12), command = self.privacy_policy_back)
-        self.ppback_button.grid(row = 4, pady = 15)
+        self.ppback_button = Button(self.pp_frame, text = " Back ", width = 20, pady = 8, bg = "#ffd64f", font = ("Comic Sans MS", 12), command = self.privacy_policy_back)
+        self.ppback_button.pack(pady = 15)
 
         #Exits the quiz
-        self.exit_button = Button(self.pp_frame, text = "Exit", width = 10, bg = "Red", font = ("Comic Sans MS", 12), command = self.close_end)
-        self.exit_button.grid(row = 6, pady = 10)
+        self.exit_button = Button(self.pp_frame, text = "Exit", width = 20, pady = 8, bg = "Red", font = ("Comic Sans MS", 12), command = self.close_end)
+        self.exit_button.pack(pady = 10)
 
         #the function to go back to the introduction component
     def privacy_policy_back(self):
@@ -243,23 +246,23 @@ class Quiz:
                                 bg = background_color,
                                 padx = 100,
                                 pady = 25)
-        self.quiz_frame.grid()
+        self.quiz_frame.pack(fill = "both", expand = True)
 
         randomiser() #this will randomly pick a question so the same questions don't keep repeating
         
         #Label widget for our question
         self.question_label = Label(self.quiz_frame,
                                    text = questions_answers[qnum][0],
-                                   font = ("Comic Sans MS", "16"),
+                                   font = ("Comic Sans MS", "20"),
                                    bg = background_color)
-        self.question_label.grid(row = 0, padx = 150)
+        self.question_label.pack()
 
         #creating space between question and choices
         self.empty_space = Label(self.quiz_frame,
                                     text = " ",
                                     font = ("Comic Sans MS", "15"),
                                     bg = background_color)
-        self.empty_space.grid(row = 1)
+        self.empty_space.pack()
 
         #This holds value of radio buttons
         self.var1 = IntVar()
@@ -269,13 +272,12 @@ class Quiz:
                                text = questions_answers[qnum][1],
                                font = ("Comic Sans MS", "12"),
                                value = 1,
-                               padx = 10,
                                pady = 15,
                                width = 20,
                                variable = self.var1,
                                indicator = 0,
                                background = "#ffd64f")
-        self.rb1.grid(row = 2) #placement
+        self.rb1.pack()
 
 
         #radio button 2, in order to hold second choice
@@ -283,13 +285,12 @@ class Quiz:
                                text = questions_answers[qnum][2],
                                font = ("Comic Sans MS", "12"),
                                value = 2,
-                               padx = 10,
                                pady = 15,
                                width = 20,
                                variable = self.var1,
                                indicator = 0,
                                background = "#ffd64f")
-        self.rb2.grid(row = 3) #placement
+        self.rb2.pack()
 
 
         #radio button 3, in order to hold third choice
@@ -297,13 +298,12 @@ class Quiz:
                                text = questions_answers[qnum][3],
                                font = ("Comic Sans MS", "12"),
                                value = 3,
-                               padx = 10,
                                pady = 15,
                                width = 20,
                                variable = self.var1,
                                indicator = 0,
                                background = "#ffd64f")
-        self.rb3.grid(row = 4) #placement
+        self.rb3.pack()
 
 
         #radio button 4, in order to hold fourth choice
@@ -311,13 +311,12 @@ class Quiz:
                                text = questions_answers[qnum][4],
                                font = ("Comic Sans MS", "12"),
                                value = 4,
-                               padx = 10,
                                pady = 15,
                                width = 20,
                                variable = self.var1,
                                indicator = 0,
                                background = "#ffd64f")
-        self.rb4.grid(row = 5) #placement
+        self.rb4.pack()
 
 
         #creating space between continue button and choices
@@ -325,25 +324,24 @@ class Quiz:
                                     text = " ",
                                     font = ("Comic Sans MS", "15"),
                                     bg = background_color)
-        self.empty_space.grid(row = 6)
+        self.empty_space.pack()
         
         #confirm button to move on to the next question
         self.confirm_button = Button(self.quiz_frame,
                                     text = "Confirm",
                                     bg = "SpringGreen2",
                                     font = ("Comic Sans MS", "12"),
-                                    width = 16,
-                                    pady = 10,
-                                    padx = 5,
+                                    width = 20,
+                                    pady = 5,
                                     command = self.test_progress)
-        self.confirm_button.grid(row = 7) #placement of continue button
+        self.confirm_button.pack()
 
         # Creating a score label for the user to know how well they have done so far. This is essentially how many questions they have got correct
         self.score_label = Label(self.quiz_frame,
                                     text = " ", #making it invisible for the time being so that I can config it later on
                                     font = ("Comic Sans MS", "15"),
                                     bg = background_color)
-        self.score_label.grid(row = 8)
+        self.score_label.pack(pady = 10)
 
         
         # questions correct = qc
@@ -351,11 +349,11 @@ class Quiz:
                                     text = " ", #making it invisible for the time being so that I can config it later on
                                     font = ("Comic Sans MS", "15"),
                                     bg = background_color)
-        self.questions_correct_label.grid(row = 9, pady = 10)        
+        self.questions_correct_label.pack()        
         
         
-        self.exit_button = Button(self.quiz_frame, text = "Exit", width = 10, bg = "Red", font = ("Comic Sans MS", 12), command = self.close_end)
-        self.exit_button.grid(row = 10, pady = 10)
+        self.exit_button = Button(self.quiz_frame, text = "Exit", width = 20, bg = "Red", font = ("Comic Sans MS", 12), pady = 5, command = self.close_end)
+        self.exit_button.pack(pady = 20)
         #the exit button to close the quiz
 
 
@@ -387,11 +385,13 @@ class Quiz:
                     score += 1 # Adding one point to the score
 
                     self.finish_quiz_help = Button(self.quiz_frame, 
-                                    text = "Continue",
+                                    text = "Finish Quiz",
                                     font = ("Comic Sans MS", 13), 
-                                    bg = "SpringGreen2", 
+                                    bg = "SpringGreen2",
+                                    width = 20,
+                                    pady = 8, 
                                     command = self.end_screen) #will move on to the end-screen
-                    self.finish_quiz_help.grid(row = 10, padx = 5, pady = 5)
+                    self.finish_quiz_help.pack(pady = 5, expand = True)
                 
                     #destroying all the buttons and labels bcz the end is near
                     self.confirm_button.destroy()
@@ -401,7 +401,7 @@ class Quiz:
                     self.rb4.destroy()
                     self.exit_button.destroy()
 
-                    self.question_label.configure(text = "You finished my quiz!")
+                    self.question_label.configure(text = "You finished my quiz!", font = ("Comic Sans MS", 25))
                     scr_label.configure(text = "Correct!")
                     qc_label.configure(text = "Number of questions right: " + str(score))
                 
@@ -413,14 +413,16 @@ class Quiz:
                     score += 0
                 
                     self.finish_quiz_help = Button(self.quiz_frame, 
-                                    text = "Continue",
+                                    text = "Finish Quiz",
                                     font = ("Comic Sans MS", 13), 
-                                    bg = "SpringGreen2", 
+                                    bg = "SpringGreen2",
+                                    width = 20,
+                                    pady = 8, 
                                     command = self.end_screen)
-                    self.finish_quiz_help.grid(row = 10, padx = 5, pady = 5)
+                    self.finish_quiz_help.pack(pady = 5, expand = True)
 
 
-                    self.question_label.configure(text = "You finished my quiz!")
+                    self.question_label.configure(text = "You finished my quiz!", font = ("Comic Sans MS", 25))
                     scr_label.configure(text = "The answer was '" + questions_answers[qnum][5] + "'.")
                     qc_label.configure(text = "Number of questions right: " + str(score))
 
@@ -472,23 +474,28 @@ class End:
             background_color = "#DA6FE4" #background colour
 
             self.end_frame = Frame(parent, bg = background_color, padx = 100, pady = 100) #the frame
-            self.end_frame.grid()
+            self.end_frame.pack(fill = "both", expand = True)
 
+             #heading, thanks for playing
             self.end_heading = Label(self.end_frame, text = "   Thanks for playing!   ", font = ("Comic Sans MS", 22), bg = background_color, pady = 15)
-            self.end_heading.grid(row = 0) #heading, thanks for playing
+            self.end_heading.pack()
+
+             #a label
+            self.end_label = Label(self.end_frame, text = "   Please find attached resources:   ", font = ("Comic Sans MS", 14), bg = background_color, pady = 15)
+            self.end_label.pack()
 
             if score < 5: #if they answer LESS than 5 questions correctly, this will move them to easier content
-                self.helper_button = Button(self.end_frame, text = "Resources", width = 13, bg = "#ffd64f", font = ("Comic Sans MS", 13), command = self.help_continue_less_than_5)
-                self.helper_button.grid(row = 4, pady = 20)
+                self.helper_button = Button(self.end_frame, text = "Resources", width = 20, pady = 8, bg = "#ffd64f", font = ("Comic Sans MS", 13), command = self.help_continue_less_than_5)
+                self.helper_button.pack(pady = 20)
             
 
             else: #if they answer MORE than 5 or equal to 5 questions correctly, this will move them to easier content
-                self.helper_button_smart = Button(self.end_frame, text = "Resources", width = 13, bg = "Cyan", font = ("Comic Sans MS", 13), command = self.help_continue_more_than_5)
-                self.helper_button_smart.grid(row = 5, pady = 20)
+                self.helper_button_smart = Button(self.end_frame, text = "Resources", width = 20, pady = 8, bg = "#ffd64f", font = ("Comic Sans MS", 13), command = self.help_continue_more_than_5)
+                self.helper_button_smart.pack(pady = 20)
 
             #exit button
-            self.exit_button = Button(self.end_frame, text = "Exit", width = 10, bg = "Red", font = ("Comic Sans MS", 13), command = self.close_end)
-            self.exit_button.grid(row = 7, pady = 20)
+            self.exit_button = Button(self.end_frame, text = "Exit", width = 20, pady = 8, bg = "Red", font = ("Comic Sans MS", 13), command = self.close_end)
+            self.exit_button.pack(pady = 20)
 
             
     #exit
@@ -514,28 +521,28 @@ class Helper:
         background_color = "#DA6FE4" #background colour
 
         self.help_frame = Frame(parent, bg = background_color, padx = 100, pady = 50)
-        self.help_frame.grid() #the frame
+        self.help_frame.pack(fill = "both", expand = True) #the frame
 
         self.help_heading = Label(self.help_frame, text = "  Below are resources to aid in your math!  ", font = ("Comic Sans MS", 22), bg = background_color, pady = 15)
-        self.help_heading.grid(row = 0) #A label
+        self.help_heading.pack() #A label
 
         self.help_heading_2 = Label(self.help_frame, text = "Your final percentage was " + str((score/10)*100) + "%. With this in mind, you might want to look at these websites.", font = ("Comic Sans MS", 16), bg = background_color, pady = 15)
-        self.help_heading_2.grid(row = 1) #converting the score into a percentage -> (score divided by ten) multiplied by 100, will convert into percentage.
+        self.help_heading_2.pack() #converting the score into a percentage -> (score divided by ten) multiplied by 100, will convert into percentage.
 
-        self.help_heading_3 = Label(self.help_frame, text = "Come on! You can do better '" + str(names_list[0]) +  "'. I'm recommending slightly easier content.", font = ("Comic Sans MS", 16), bg = background_color, pady = 15)
-        self.help_heading_3.grid(row = 2) #the str(names_list[0]) will give the first item in the names_list which will be the user's name
+        self.help_heading_3 = Label(self.help_frame, text = "Come on! You can do better " + str(names_list[0]) +  ". I'm recommending slightly easier content.", font = ("Comic Sans MS", 16), bg = background_color, pady = 15)
+        self.help_heading_3.pack() #the str(names_list[0]) will give the first item in the names_list which will be the user's name
 
-        self.link_button_1 = Button(self.help_frame, text = "Resource 1", width = 15, bg = "#ffd64f", font = ("Comic Sans MS", 13), command = self.ixl) #links
-        self.link_button_1.grid(row = 4, pady = 20)
+        self.link_button_1 = Button(self.help_frame, text = "Resource 1", width = 15, pady = 8, bg = "#ffd64f", font = ("Comic Sans MS", 13), command = self.ixl) #links
+        self.link_button_1.pack(pady = 20)
 
-        self.link_button_2 = Button(self.help_frame, text = "Resource 2", width = 15, bg = "#ffd64f", font = ("Comic Sans MS", 13), command = self.khan) #links
-        self.link_button_2.grid(row = 5, pady = 20)
+        self.link_button_2 = Button(self.help_frame, text = "Resource 2", width = 15, pady = 8, bg = "#ffd64f", font = ("Comic Sans MS", 13), command = self.khan) #links
+        self.link_button_2.pack(pady = 20)
 
-        self.link_button_3 = Button(self.help_frame, text = "Resource 3", width = 15, bg = "#ffd64f", font = ("Comic Sans MS", 13), command = self.math) #links
-        self.link_button_3.grid(row = 6, pady = 20)
+        self.link_button_3 = Button(self.help_frame, text = "Resource 3", width = 15, pady = 8, bg = "#ffd64f", font = ("Comic Sans MS", 13), command = self.math) #links
+        self.link_button_3.pack(pady = 20)
 
         self.exit_button = Button(self.help_frame, text = "Exit", width = 10, bg = "Red", font = ("Comic Sans MS", 13), command = self.close_end) #exit
-        self.exit_button.grid(row = 7, pady = 20)
+        self.exit_button.pack(pady = 20)
 
     def ixl(self):
         
@@ -564,28 +571,28 @@ class HelperSmart:
         background_color = "#DA6FE4" #background colour
 
         self.help_frame = Frame(parent, bg = background_color, padx = 100, pady = 50) #the frame
-        self.help_frame.grid()
+        self.help_frame.pack(fill = "both", expand = True)
 
         self.help_heading = Label(self.help_frame, text = "  Below are resources to aid in your math!  ", font = ("Comic Sans MS", 22), bg = background_color, pady = 15)
-        self.help_heading.grid(row = 0) #the heading label
+        self.help_heading.pack() #the heading label
 
         self.help_heading_2 = Label(self.help_frame, text = "Your final percentage was " + str((score/10)*100) + "%. With this in mind, you might want to look at these websites.", font = ("Comic Sans MS", 16), bg = background_color, pady = 15)
-        self.help_heading_2.grid(row = 1) #converting the score into a percentage -> (score divided by ten) multiplied by 100, will convert into percentage.
+        self.help_heading_2.pack() #converting the score into a percentage -> (score divided by ten) multiplied by 100, will convert into percentage.
 
-        self.help_heading_3 = Label(self.help_frame, text = "You are well adept at math '" + str(names_list[0]) + "'. I'm recommending more advanced content.", font = ("Comic Sans MS", 16), bg = background_color, pady = 15)
-        self.help_heading_3.grid(row = 2) #the str(names_list[0]) will give the first item in the names_list which will be the user's name
+        self.help_heading_3 = Label(self.help_frame, text = "You are well adept at math " + str(names_list[0]) + ". I'm recommending more advanced content.", font = ("Comic Sans MS", 16), bg = background_color, pady = 15)
+        self.help_heading_3.pack() #the str(names_list[0]) will give the first item in the names_list which will be the user's name
 
-        self.link_button_1 = Button(self.help_frame, text = "Resource 1", width = 15, bg = "#ffd64f", font = ("Comic Sans MS", 13), command=self.ixl) #links
-        self.link_button_1.grid(row = 4, pady = 20)
+        self.link_button_1 = Button(self.help_frame, text = "Resource 1", width = 15, pady = 8, bg = "#ffd64f", font = ("Comic Sans MS", 13), command=self.ixl) #links
+        self.link_button_1.pack(pady = 20)
 
-        self.link_button_2 = Button(self.help_frame, text = "Resource 2", width = 15, bg = "#ffd64f", font = ("Comic Sans MS", 13), command=self.khan) #links
-        self.link_button_2.grid(row = 5, pady = 20)
+        self.link_button_2 = Button(self.help_frame, text = "Resource 2", width = 15, pady = 8, bg = "#ffd64f", font = ("Comic Sans MS", 13), command=self.khan) #links
+        self.link_button_2.pack(pady = 20)
 
-        self.link_button_3 = Button(self.help_frame, text = "Resource 3", width = 15, bg = "#ffd64f", font = ("Comic Sans MS", 13), command=self.math) #links
-        self.link_button_3.grid(row = 6, pady = 20)
+        self.link_button_3 = Button(self.help_frame, text = "Resource 3", width = 15, pady = 8, bg = "#ffd64f", font = ("Comic Sans MS", 13), command=self.math) #links
+        self.link_button_3.pack(pady = 20)
 
         self.exit_button = Button(self.help_frame, text = "Exit", width = 10, bg = "Red", font = ("Comic Sans MS", 13), command = self.close_end) #exit
-        self.exit_button.grid(row = 7, pady = 20)
+        self.exit_button.pack(pady = 20)
 
     def ixl(self):
         
@@ -614,5 +621,6 @@ class HelperSmart:
 if __name__ == "__main__":
     root = Tk()
     root.title("Math Helper by Tousif") #the title of my program
-    Introduction_object = Introduction(root)
+    root.state("zoomed") #starts my program in a maximised state to fill the entire screen
+    Introduction_object = Introduction(root) #starts my introduction component
     root.mainloop() #This loops the window for to it stay and not disappear.
