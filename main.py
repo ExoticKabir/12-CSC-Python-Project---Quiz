@@ -12,110 +12,10 @@ from tkinter import messagebox #This is to produce the error box
 
 names_list = [] #This will contain the user's name, which will be used later on
 
-global questions_answers #Making questions_answers dictionary global so it can be called from anywhere
-
 asked = [] #Will contain the questions that have already been asked so they don't display again
-
 score = 0 #Setting the initial score or questions correct to zero
 
 
-
-
-# I have replaced the questions now with proper math questions.
-questions_answers = {
-    1: [
-        "Which number equals 𝑖3?", #First item, this is going to be the question, index 0
-        "𝑖", #Choice 1, index 1
-        "-1", #Choice 2, index 2
-        "-𝑖", #Choice 3, index 3
-        "1", #Choice 4, index 4
-        "-𝑖", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
-        3], #Last item, "3" <- index position of correct answer
-
-
-    2: [
-        "Complex conjugate of 5+10i?", #First item, this is going to be the question, index 0
-        "10+20𝑖", #Choice 1, index 1
-        "5-10𝑖", #Choice 2, index 2
-        "15", #Choice 3, index 3
-        "π/4", #Choice 4, index 4
-        "5-10𝑖", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
-        2], #Last item, "3" <- index position of correct answer
-
-
-    3: [
-        "How many radians is 90°?", #First item, this is going to be the question, index 0
-        "(π/2) radians", #Choice 1, index 1
-        "(π/6) radians", #Choice 2, index 2
-        "(π/4) radians", #Choice 3, index 3
-        "(π/3) radians", #Choice 4, index 4
-        "(π/2) radians", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
-        1], #Last item, "3" <- index position of correct answer
-
-    4: [
-        "2+√(15-2x3)?", #First item, this is going to be the question, index 0
-        "-3", #Choice 1, index 1
-        "+4", #Choice 2, index 2
-        "-1", #Choice 3, index 3
-        "+2", #Choice 4, index 4
-        "-1", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
-        3], #Last item, "3" <- index position of correct answer
-
-    
-    5: [
-        "8÷2(2+2)?", #First item, this is going to be the question, index 0
-        "1", #Choice 1, index 1
-        "100", #Choice 2, index 2
-        "16", #Choice 3, index 3
-        "None of the above", #Choice 4, index 4
-        "16", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
-        3], #Last item, "3" <- index position of correct answer
-
-    6: [
-        "What does differentiation do?", #First item, this is going to be the question, index 0
-        "Gives gradient", #Choice 1, index 1
-        "Finds area of graph", #Choice 2, index 2
-        "Makes it a quadratic", #Choice 3, index 3
-        "Helps with integration", #Choice 4, index 4
-        "Gives gradient", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
-        1], #Last item, "3" <- index position of correct answer
-
-    7: [
-        "What does integration do?", #First item, this is going to be the question, index 0
-        "Converts to radians", #Choice 1, index 1
-        "Finds time", #Choice 2, index 2
-        "Helps with differentiation", #Choice 3, index 3
-        "Finds area of graph", #Choice 4, index 4
-        "Finds area of graph", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
-        4], #Last item, "3" <- index position of correct answer
-
-    8: [
-        "What is discriminant?", #First item, this is going to be the question, index 0
-        "b^2-2ab", #Choice 1, index 1
-        "b^2-4ac", #Choice 2, index 2
-        "c^2+2ab", #Choice 3, index 3
-        "c^2-2ab", #Choice 4, index 4
-        "b^2-4ac", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
-        2], #Last item, "3" <- index position of correct answer
-
-    9: [
-        "What is the equation of a circle?", #First item, this is going to be the question, index 0
-        "y = mx + c", #Choice 1, index 1
-        "x^3 - y^3 = r", #Choice 2, index 2
-        "y = x^2 - r", #Choice 3, index 3
-        "(x–h)^2 + (y–k)^2 = r^2", #Choice 4, index 4
-        "(x–h)^2 + (y–k)^2 = r^2", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
-        4], #Last item, "3" <- index position of correct answer
-
-    10: [
-        "How many seconds are in a day?", #First item, this is going to be the question, index 0
-        "64200", #Choice 1, index 1
-        "72000", #Choice 2, index 2
-        "86400", #Choice 3, index 3
-        "None of the above", #Choice 4, index 4
-        "86400", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
-        3] #Last item, "3" <- index position of correct answer
-}
 
 def randomiser(): #My question randomiser
     global qnum  #Question number is the key in our dictionary questions_answers, I will have 10 questions so 10 keys
@@ -241,6 +141,102 @@ class PrivacyPolicy: #my privacy policy component
 class Quiz:
     def __init__(self, parent):
         background_color = "#DA6FE4" #background colour
+        
+        self.questions_answers = {
+    1: [
+        "Which number equals 𝑖3?", #First item, this is going to be the question, index 0
+        "𝑖", #Choice 1, index 1
+        "-1", #Choice 2, index 2
+        "-𝑖", #Choice 3, index 3
+        "1", #Choice 4, index 4
+        "-𝑖", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
+        3], #Last item, "3" <- index position of correct answer
+
+
+    2: [
+        "Complex conjugate of 5+10i?", #First item, this is going to be the question, index 0
+        "10+20𝑖", #Choice 1, index 1
+        "5-10𝑖", #Choice 2, index 2
+        "15", #Choice 3, index 3
+        "π/4", #Choice 4, index 4
+        "5-10𝑖", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
+        2], #Last item, "3" <- index position of correct answer
+
+
+    3: [
+        "How many radians is 90°?", #First item, this is going to be the question, index 0
+        "(π/2) radians", #Choice 1, index 1
+        "(π/6) radians", #Choice 2, index 2
+        "(π/4) radians", #Choice 3, index 3
+        "(π/3) radians", #Choice 4, index 4
+        "(π/2) radians", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
+        1], #Last item, "3" <- index position of correct answer
+
+    4: [
+        "2+√(15-2x3)?", #First item, this is going to be the question, index 0
+        "-3", #Choice 1, index 1
+        "+4", #Choice 2, index 2
+        "-1", #Choice 3, index 3
+        "+2", #Choice 4, index 4
+        "-1", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
+        3], #Last item, "3" <- index position of correct answer
+
+    
+    5: [
+        "8÷2(2+2)?", #First item, this is going to be the question, index 0
+        "1", #Choice 1, index 1
+        "100", #Choice 2, index 2
+        "16", #Choice 3, index 3
+        "None of the above", #Choice 4, index 4
+        "16", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
+        3], #Last item, "3" <- index position of correct answer
+
+    6: [
+        "What does differentiation do?", #First item, this is going to be the question, index 0
+        "Gives gradient", #Choice 1, index 1
+        "Finds area of graph", #Choice 2, index 2
+        "Makes it a quadratic", #Choice 3, index 3
+        "Helps with integration", #Choice 4, index 4
+        "Gives gradient", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
+        1], #Last item, "3" <- index position of correct answer
+
+    7: [
+        "What does integration do?", #First item, this is going to be the question, index 0
+        "Converts to radians", #Choice 1, index 1
+        "Finds time", #Choice 2, index 2
+        "Helps with differentiation", #Choice 3, index 3
+        "Finds area of graph", #Choice 4, index 4
+        "Finds area of graph", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
+        4], #Last item, "3" <- index position of correct answer
+
+    8: [
+        "What is discriminant?", #First item, this is going to be the question, index 0
+        "b^2-2ab", #Choice 1, index 1
+        "b^2-4ac", #Choice 2, index 2
+        "c^2+2ab", #Choice 3, index 3
+        "c^2-2ab", #Choice 4, index 4
+        "b^2-4ac", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
+        2], #Last item, "3" <- index position of correct answer
+
+    9: [
+        "What is the equation of a circle?", #First item, this is going to be the question, index 0
+        "y = mx + c", #Choice 1, index 1
+        "x^3 - y^3 = r", #Choice 2, index 2
+        "y = x^2 - r", #Choice 3, index 3
+        "(x–h)^2 + (y–k)^2 = r^2", #Choice 4, index 4
+        "(x–h)^2 + (y–k)^2 = r^2", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
+        4], #Last item, "3" <- index position of correct answer
+
+    10: [
+        "How many seconds are in a day?", #First item, this is going to be the question, index 0
+        "64200", #Choice 1, index 1
+        "72000", #Choice 2, index 2
+        "86400", #Choice 3, index 3
+        "None of the above", #Choice 4, index 4
+        "86400", #index 5, An item, the correct choice/option <- this will be displayed if incorrect choice is selected
+        3] #Last item, "3" <- index position of correct answer
+}
+        
         #setting up first frame
         self.quiz_frame = Frame(parent, #the frame
                                 bg = background_color,
@@ -252,7 +248,7 @@ class Quiz:
         
         #Label widget for our question
         self.question_label = Label(self.quiz_frame,
-                                   text = questions_answers[qnum][0],
+                                   text = self.questions_answers[qnum][0],
                                    font = ("Comic Sans MS", "20"),
                                    bg = background_color)
         self.question_label.pack()
@@ -269,7 +265,7 @@ class Quiz:
 
         #radio button 1, in order to hold first choice
         self.rb1 = Radiobutton(self.quiz_frame,
-                               text = questions_answers[qnum][1],
+                               text = self.questions_answers[qnum][1],
                                font = ("Comic Sans MS", "12"),
                                value = 1,
                                pady = 15,
@@ -282,7 +278,7 @@ class Quiz:
 
         #radio button 2, in order to hold second choice
         self.rb2 = Radiobutton(self.quiz_frame,
-                               text = questions_answers[qnum][2],
+                               text = self.questions_answers[qnum][2],
                                font = ("Comic Sans MS", "12"),
                                value = 2,
                                pady = 15,
@@ -295,7 +291,7 @@ class Quiz:
 
         #radio button 3, in order to hold third choice
         self.rb3 = Radiobutton(self.quiz_frame,
-                               text = questions_answers[qnum][3],
+                               text = self.questions_answers[qnum][3],
                                font = ("Comic Sans MS", "12"),
                                value = 3,
                                pady = 15,
@@ -308,7 +304,7 @@ class Quiz:
 
         #radio button 4, in order to hold fourth choice
         self.rb4 = Radiobutton(self.quiz_frame,
-                               text = questions_answers[qnum][4],
+                               text = self.questions_answers[qnum][4],
                                font = ("Comic Sans MS", "12"),
                                value = 4,
                                pady = 15,
@@ -362,11 +358,11 @@ class Quiz:
     def questions_setup(self):
         randomiser()
         self.var1.set(0)
-        self.question_label.config(text = questions_answers[qnum][0])
-        self.rb1.config(text = questions_answers[qnum][1])
-        self.rb2.config(text = questions_answers[qnum][2])
-        self.rb3.config(text = questions_answers[qnum][3])
-        self.rb4.config(text = questions_answers[qnum][4])
+        self.question_label.config(text = self.questions_answers[qnum][0])
+        self.rb1.config(text = self.questions_answers[qnum][1])
+        self.rb2.config(text = self.questions_answers[qnum][2])
+        self.rb3.config(text = self.questions_answers[qnum][3])
+        self.rb4.config(text = self.questions_answers[qnum][4])
 
     #This is the method which will be called when the confirm button is clicked <- taking care of progress
     def test_progress(self):
@@ -381,7 +377,7 @@ class Quiz:
                 choice = self.var1.get()
 
             else: #If it is the last question and they HAVE selected a choice.
-                if choice == questions_answers[qnum][6]: #If they select the correct choice for last question
+                if choice == self.questions_answers[qnum][6]: #If they select the correct choice for last question
                     score += 1 # Adding one point to the score
 
                     self.finish_quiz_help = Button(self.quiz_frame, 
@@ -423,7 +419,7 @@ class Quiz:
 
 
                     self.question_label.configure(text = "You finished my quiz!", font = ("Comic Sans MS", 25))
-                    scr_label.configure(text = "The answer was '" + questions_answers[qnum][5] + "'.")
+                    scr_label.configure(text = "The answer was '" + self.questions_answers[qnum][5] + "'.")
                     qc_label.configure(text = "Number of questions right: " + str(score))
 
                     #destroying all the buttons and labels bcz the end is near
@@ -441,7 +437,7 @@ class Quiz:
                 choice = self.var1.get()
 
             else: #If it isn't the last question and they HAVE selected a choice.
-                if choice == questions_answers[qnum][6]: #If they selected the correct choice
+                if choice == self.questions_answers[qnum][6]: #If they selected the correct choice
                     score += 1
 
                     scr_label.configure(text = "Correct!")
@@ -452,7 +448,7 @@ class Quiz:
                 
                 else: #If the choice is incorrect 
                     score += 0
-                    scr_label.configure(text = "The answer was '" + questions_answers[qnum][5] + "'.")
+                    scr_label.configure(text = "The answer was '" + self.questions_answers[qnum][5] + "'.")
                     qc_label.configure(text = "Number of questions right: " + str(score))
                     self.confirm_button.config(text = "Confirm")
                     self.questions_setup() #Will move to the next question
