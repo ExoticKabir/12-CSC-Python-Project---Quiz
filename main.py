@@ -46,7 +46,7 @@ class Introduction: #This is the introduction class
 
         #creates a label to ask for the name
         self.user_label = Label(self.quiz_frame,
-                                text = "Enter your name to below:",
+                                text = "Enter your player name below:",
                                 font = ("Comic Sans MS", "13"),
                                 bg = background_color)
         self.user_label.pack(pady = 20)
