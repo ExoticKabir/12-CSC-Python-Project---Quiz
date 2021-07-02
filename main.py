@@ -1,9 +1,7 @@
-#Version 9 By Mohammad Tousif Kabir -> improves overall experience
+#Version 9.1 By Mohammad Tousif Kabir -> improves overall experience
 
-#Updates:
-#A) Uses pack instead of grid
-#B) Uses a message box instead of a label for the error message
-#C) Launches the program in maximised state
+#Update:
+#A) Uses isalpha() method which returns True if all the characters are alphabet letters (a-z). - More boundary testing
 
 from tkinter import * #For GUI
 import random #To randomise the questions
@@ -46,7 +44,7 @@ class Introduction: #This is the introduction class
 
         #creates a label to ask for the name
         self.user_label = Label(self.quiz_frame,
-                                text = "Enter your player name below:",
+                                text = "Enter your name below:",
                                 font = ("Comic Sans MS", "13"),
                                 bg = background_color)
         self.user_label.pack(pady = 20)
@@ -84,13 +82,13 @@ class Introduction: #This is the introduction class
     #This will collect the name from the entry box
     def name_collection(self):
         name = self.entry_box.get()  #this will collect the name from the entry box
-        if len(name) > 1 and len(name) < 13: #Boundary testing, the name has to be between 1 and 13 characters, using len this is possible
+        if len(name) > 1 and len(name) < 13 and str.isalpha(name): #Boundary testing, the name has to be between 1 and 13 characters, using len this is possible. The isalpha() method returns True if all the characters are alphabet letters (a-z).
             names_list.append(name)  #adds the user name to names list declared at the beginning
             self.quiz_frame.destroy()  #this will destroy the window
             Quiz(root) #Will run the quiz class
 
         else: #if the name is less than 1 or greater than 13 characters, returns the error message below
-            messagebox.showerror(" Error", "Your name must be between 2-12 characters! ")
+            messagebox.showerror(" Error", "Your name must be between 2-12 characters and only be letters!")
 
 
 
